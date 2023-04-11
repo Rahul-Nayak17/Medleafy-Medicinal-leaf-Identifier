@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Image Predictor</title>
+    <script>
+      function predictImage() {
+        const fileInput = document.getElementById("image");
+        const formData = new FormData();
+        formData.append("file", fileInput.files[0]);
+
+        fetch("/predict", {
+          method: "POST",
+          body: formData,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            const resultElement = document.getElementById("result");
+            resultElement.textContent = data.result;
+          })
+          .catch((error) => console.error(error));
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Image Predictor</h1>
+    <form>
+      <label for="image">Upload Image:</label>
+      <input type="file" id="image" accept="image/*" /><br /><br />
+      <button type="button" onclick="predictImage()">Predict</button>
+    </form>
+    <h2>Result:</h2>
+    <p id="result"></p>
+  </body>
+</html>
