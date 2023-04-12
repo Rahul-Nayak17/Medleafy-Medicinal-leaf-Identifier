@@ -4,7 +4,10 @@
   "description": "Your project description",
   "main": "app.py",
   "scripts": {
-    "start": "python app.py"
+ 
+   
+      "build": "python app.py"
+    
   },
   "dependencies": {
     "flask": "^2.1.1"
