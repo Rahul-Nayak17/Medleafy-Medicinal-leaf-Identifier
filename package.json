@@ -1,17 +1,20 @@
 {
   "name": "med-leaf-app",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Your project description",
+  "main": "app.py",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "python app.py"
+  },
+  "dependencies": {
+    "flask": "^2.1.0"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Rahul-Nayak17/med-leaf-app.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Your Name",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Rahul-Nayak17/med-leaf-app/issues"

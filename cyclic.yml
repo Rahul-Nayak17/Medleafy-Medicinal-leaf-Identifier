@@ -1,0 +1,16 @@
+version: 1.0
+
+jobs:
+  build:
+    steps:
+      - name: Install dependencies
+        command: pip install -r requirements.txt
+      - name: Build app
+        command: python setup.py build
+
+  deploy:
+    requires:
+      - build
+    steps:
+      - name: Deploy to server
+        command: gunicorn app:app --bind 0.0.0.0:$PORT
