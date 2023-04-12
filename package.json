@@ -2,7 +2,7 @@
   "name": "med-leaf-app",
   "version": "1.0.0",
   "description": "",
-  "main": "templates/index.js",
+  "main": "templates/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
