@@ -6,7 +6,7 @@
   "scripts": {
  
    
-      "build": "python app.py"
+    "start": "python app.py"
     
   },
   "dependencies": {
