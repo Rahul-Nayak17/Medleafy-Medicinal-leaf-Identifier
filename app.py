@@ -12,21 +12,9 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 # Load the pre-trained model
-model = keras.models.load_model('10class_model_yt_vgg16.h5')
+model = keras.models.load_model('model_yt_vgg16.h5')
 
-# Define the new class names
-class_names = ['Amruthballi',
-               'Betel',
-               'Brahmi',
-               'Doddapatra',
-               'Hipli',
-               'Mint',
-               'Neem',
-               'Parijata',
-               'Peepal',
-               'Tulsi']
-
-@app.route('/')
+@app.route('/') 
 def index():
     return render_template('index.html')
 
