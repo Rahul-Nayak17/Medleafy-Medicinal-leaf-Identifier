@@ -1,0 +1,76 @@
+/* center the logo in the navbar */
+.navbar-brand {
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  /* add margin to the top and bottom of the main heading */
+  h1 {
+    margin: 2rem 0;
+  }
+  
+  /* add margin to the bottom of the sub-heading */
+  h2 {
+    margin-bottom: 2rem;
+  }
+  
+  /* style the form */
+  form {
+    border: 2px solid #ccc;
+    padding: 2rem;
+    border-radius: 10px;
+  }
+  
+  /* style the file input */
+  .custom-file-input:focus~.custom-file-label {
+    border-color: #8ad4ee;
+    box-shadow: 0 0 0 0.2rem rgba(39, 166, 223, 0.25);
+  }
+  
+  /* style the predict button */
+  .btn-primary {
+    background-color: #27a6df;
+    border-color: #27a6df;
+  }
+  
+  .btn-primary:hover {
+    background-color: #238cbf;
+    border-color: #238cbf;
+  }
+  
+  /* style the result card */
+  .card {
+    margin-top: 3rem;
+  }
+  
+  /* style the result text */
+  #result {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  /* style the leaf images and names */
+  .leaf {
+    margin: 1rem;
+  }
+  
+  .leaf img {
+    display: block;
+    margin: 0 auto;
+    max-height: 150px;
+  }
+  
+  .leaf h4 {
+    text-align: center;
+    margin-top: 1rem;
+  }
+/* CSS code for index.html */
+.leaf-image {
+    height: 150px;
+    margin-bottom: 20px;
+  }
+  .leaf-name {
+    font-size: 24px;
+    font-weight: bold;
+  }
+    

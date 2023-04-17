@@ -1,7 +1,78 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Image Predictor</title>
+    <title>MedLeafy</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    /> -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#"
+        >MedLeafy
+        <img src="/static/app logo.jpg" alt="" width="60px" height="100%"
+      /></a>
+    </nav>
+    <div class="container mt-5">
+      <h1 class="text-center mb-4">Medicinal Leaf Predictor</h1>
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <form action="/predict" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+              <label for="image">Upload Image:</label>
+              <div class="custom-file">
+                <input
+                  type="file"
+                  class="custom-file-input"
+                  id="image"
+                  accept="image/*"
+                  onchange="displayFilename()"
+                  name="file"
+                />
+                <label class="custom-file-label" for="image">Choose file</label>
+              </div>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">Predict</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+          <div class="alert alert-info" role="alert" style="width: fit-content">
+            This web app is able to predict 10 pretrained classes.
+            <strong
+              >'Amruthballi','Betel','Brahmi','Doddapatra','Hipli','Mint',
+              'Neem','Parijata','Peepal','Tulsi'</strong
+            >.
+          </div>
+          <!-- <h2 class="text-center mb-4">Result:</h2> -->
+          <!-- <div class="card">
+            <div class="card-body">
+              <h4 id="result" class="text-center"></h4>
+            </div>
+          </div> -->
+        </div>
+      </div>
+      <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+          <h5 id="filename" class="text-center"></h5>
+        </div>
+      </div>
+    </div>
     <script>
       function predictImage() {
         const fileInput = document.getElementById("image");
@@ -12,23 +83,22 @@
           method: "POST",
           body: formData,
         })
-          .then((response) => response.json())
+          .then((response) => response.text())
           .then((data) => {
             const resultElement = document.getElementById("result");
-            resultElement.textContent = data.result;
+            resultElement.innerHTML = data;
           })
           .catch((error) => console.error(error));
       }
+
+      function displayFilename() {
+        const filename = document
+          .getElementById("image")
+          .value.split("\\")
+          .pop();
+        const filenameElement = document.getElementById("filename");
+        filenameElement.textContent = `Selected file: ${filename}`;
+      }
     </script>
-  </head>
-  <body>
-    <h1>Image Predictor</h1>
-    <form>
-      <label for="image">Upload Image:</label>
-      <input type="file" id="image" accept="image/*" /><br /><br />
-      <button type="button" onclick="predictImage()">Predict</button>
-    </form>
-    <h2>Result:</h2>
-    <p id="result"></p>
   </body>
 </html>

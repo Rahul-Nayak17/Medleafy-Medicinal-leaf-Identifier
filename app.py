@@ -12,11 +12,11 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 # Load the pre-trained model
-model = keras.models.load_model('model_yt_vgg16.h5')
+model = keras.models.load_model('10class_model_yt_vgg16.h5')
 
 @app.route('/') 
 def index():
-    return render_template('index.html')
+    return render_template("index.html")
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -64,7 +64,8 @@ def predict():
         # The predicted probability is below the threshold
         result = "Input image does not belong to any of the 10 trained classes"
 
-    return jsonify({'result': json.dumps(str(result))})
+    # Render the result.html template with the result value
+    return render_template("result.html", result=result)
 
 if __name__ == "__main__":
     app.run(debug=False, host='0.0.0.0')
