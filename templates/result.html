@@ -9,12 +9,6 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <!-- <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    /> -->
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
@@ -23,10 +17,20 @@
   <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="/templates/index.html">
+      <a class="navbar-brand" href="/">
         MedLeafy
         <img src="/static/app logo.jpg" alt="" width="60px" height="100%" />
       </a>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-primary ml-2" onclick="translate()">
+            Translate
+          </button>
+        </li>
+      </ul>
     </nav>
 
     <div class="container my-5">
@@ -58,5 +62,34 @@
 
     <!-- Custom JS -->
     <script src="/static/app.js"></script>
+    <script>
+      // Change the translate function to handle the form submission event
+      function translate(event) {
+        // Prevent the default form submission behavior
+        event.preventDefault();
+
+        var result = document.getElementById("result-input").value;
+        fetch("/translate", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            content: result,
+          }),
+        })
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById("plant-name").innerText = "";
+            document.getElementById("medicinal-properties").innerText = data;
+          })
+          .catch((error) => console.log(error));
+      }
+
+      // Add an event listener for the form submission event
+      document
+        .getElementById("translate-form")
+        .addEventListener("submit", translate);
+    </script>
   </body>
 </html>

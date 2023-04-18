@@ -1,18 +1,29 @@
 from keras.utils import load_img, img_to_array
 from PIL import Image
 import json
-from flask import Flask, jsonify, request
-import tensorflow as tf
+from flask import Flask, jsonify, request, render_template, Response
 from tensorflow import keras
+import tensorflow as tf
+from googletrans import Translator
 import numpy as np
-from flask import Flask, render_template
-
-
 
 app = Flask(__name__)
 
 # Load the pre-trained model
 model = keras.models.load_model('10class_model_yt_vgg16.h5')
+
+class_names = ['Amruthballi',
+               'Betel',
+               'Brahmi',
+               'Doddapatra',
+               'Hipli',
+               'Mint',
+               'Neem',
+               'Parijata',
+               'Peepal',
+               'Tulsi']
+
+translator = Translator()
 
 @app.route('/') 
 def index():
@@ -20,21 +31,9 @@ def index():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    class_names = ['Amruthballi',
-                   'Betel',
-                   'Brahmi',
-                   'Doddapatra',
-                   'Hipli',
-                   'Mint',
-                   'Neem',
-                   'Parijata',
-                   'Peepal',
-                   'Tulsi']
-
     # get the file from POST
     file = request.files['file']
 
-    # print(file)
     image = Image.open(file.stream)
 
     # image preprocessing
@@ -64,9 +63,15 @@ def predict():
         # The predicted probability is below the threshold
         result = "Input image does not belong to any of the 10 trained classes"
 
-    # Render the result.html template with the result value
     return render_template("result.html", result=result)
+
+@app.route("/translate", methods=['POST'])
+def translateKN():
+    content = request.get_json()
+    value=content.get('content')
+    result=translator.translate(value, src='en', dest='kn')
+    result=result.text
+    return result
 
 if __name__ == "__main__":
     app.run(debug=False, host='0.0.0.0')
-#  "start": "python app.py"
