@@ -1,4 +1,3 @@
-from keras.utils import load_img, img_to_array
 from PIL import Image
 import json
 from flask import Flask, jsonify, request, render_template, Response
@@ -6,6 +5,8 @@ from tensorflow import keras
 import tensorflow as tf
 from googletrans import Translator
 import numpy as np
+import requests
+from bs4 import BeautifulSoup
 
 app = Flask(__name__)
 
@@ -63,15 +64,16 @@ def predict():
         # The predicted probability is below the threshold
         result = "Input image does not belong to any of the 10 trained classes"
 
+    global global_result
+    global_result = result
+    
     return render_template("result.html", result=result)
 
-@app.route("/translate", methods=['POST'])
-def translateKN():
-    content = request.get_json()
-    value=content.get('content')
-    result=translator.translate(value, src='en', dest='kn')
-    result=result.text
-    return result
+@app.route('/translate', methods=['POST'])
+def translate():
+    result = global_result
+
+    return render_template("Result-Translate-KN.html", result=result)
 
 if __name__ == "__main__":
-    app.run(debug=False, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0')
