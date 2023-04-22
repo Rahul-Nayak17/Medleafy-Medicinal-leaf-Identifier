@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 app = Flask(__name__)
 
 # Load the pre-trained model
-model = keras.models.load_model('10class_model_yt_vgg16.h5')
+model = keras.models.load_model('updated_vgg16.h5')
 
 class_names = ['Amruthballi',
                'Betel',
@@ -50,7 +50,7 @@ def predict():
     pred_prob = np.max(predictions)
 
     # Set a threshold probability value
-    threshold = 0.7
+    threshold = 0.8
 
     if pred_prob >= threshold:
         # The predicted probability is above the threshold
