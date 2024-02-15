@@ -1,7 +1,7 @@
 {
   "name": "med-leaf-app",
   "version": "1.0.0",
-  "description": "Your project description",
+  "description": "An application to recognize leaf and get details about its medicinal benefits",
   "main": "app.py",
   "scripts": {
  
@@ -17,7 +17,7 @@
     "url": "git+https://github.com/Rahul-Nayak17/med-leaf-app.git"
   },
   "keywords": [],
-  "author": "Your Name",
+  "author": "med-leaf-app",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Rahul-Nayak17/med-leaf-app/issues"
